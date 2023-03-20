@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<!-- saved from url=(0150)https://ilearn.marist.edu/access/content/attachment/cc7e0faa-ae79-45b5-9efb-30de348e3f07/Assignments/9de5c7be-c83c-4152-9e84-cc450d7a8ac6/e06-ong.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Fridge App</title>
+    <style>
+        body {
+            background-image: url(https://th.bing.com/th/id/R.7a61b24ccfea53427ac74e6c84de3bc3?rik=WeCr3KyX4aSlSA&riu=http%3a%2f%2fbate.bm%2fwp-content%2fuploads%2f2020%2f09%2fkitchenaid-kbls19ktms-stainless-steel-left-hinge-18-5-cu-ft-architect-ii-bottom-freezer-refrigerator_110a36474d07fd6233f8cfc13d2186fe.jpg&ehk=8yx63Wg3R80j8HbIcMPAITCEwfHXrMGDT3daEn0iImc%3d&risl=&pid=ImgRaw&r=0);
+            background-position: center;
+            background-position-y: -55px;
+            background-size: 20cm;
+            background-repeat: no-repeat;
+        }
+        .container {
+            background-color: rgb(213, 248, 253);
+            width: 25%;
+            height: 550px;
+            left: 62.5%;
+            top: 125px;
+            position: fixed;
+            margin: 0 0 0 -25%;
+            text-align: center;
+            padding-top: 0px;
+            border-radius: 2%;
+            display: flex;
+            flex-direction: column;
+        }
+        .container .clock {
+            padding-top: 1cm;
+            order: -1;
+        }
+        .container #clock {
+            text-align: center;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-size: 50px;
+            background-color: rgb(236, 250, 210);
+        }
+        .container .wraptext {
+            font-family: monospace;
+            text-align: center;
+            padding-top: 125px;
+        }
+        .container .clock #clock {
+            border: 2px solid black;
+            display: inline-block;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        .container .tempContainer {
+            font-size: 47px;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        .container .tempContainer #temp {
+            display: inline-block;
+            border: 1px solid black;
+            padding-left: 10px;
+            padding-right: 10px;
+            background-image: linear-gradient(to right, rgba(125, 243, 243, 75%), rgba(255, 191, 71, 75%));
+        }
+        .container .tempContainer #decrTemp {
+            font-size: 35px;
+            background-color: aqua;    
+            display: none;
+        }
+        .container .tempContainer #decrTemp:hover {
+            background-color: black;
+            color: white;
+        }
+        .container .tempContainer #incrTemp {
+            font-size: 35px;
+            background-color: rgb(248, 191, 86);   
+            display: none;     
+        }
+        .container .tempContainer #incrTemp:hover {
+            background-color: black;
+            color: white;
+        }
+        .container .buttonContainer button {
+            background-color: azure;
+            color: black;
+            width: 25%;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+        .container .buttonContainer button:hover {
+            background-color: black;
+            color: white;
+        }
+        .container .buttonContainer .main-options {
+            display: none;
+        }
+        .container .buttonContainer #on-button {
+            color: green;
+            width: 30%;
+        }
+        .container .buttonContainer #off-button {
+            color: red;
+            display: none;
+            width: 30%;
+        }
+        .container .buttonContainer .main-options {
+            display: none;
+        }
+        .container .buttonContainer #returnButton {
+            display: none;
+        }
+        .container #fridge {
+            display: none;
+        }
+        .container #tv {
+            display: none;
+        }
+        .container #google {
+            display: none;
+        }
+        .container #music {
+            display: none;
+        }
+        .container #errorMessage {
+            display: none;
+        }
+    </style>
+</head>
+<body onload="startClock()">
+    <main>
+        <div class="container">
+            
+            <div class="clock">
+                <section id="clock">15:00:51</section>
+            </div>
+
+            <br>
+            <section id="errorMessage"></section>
+            <div class="tempContainer">
+                <input type="button" id="decrTemp" value="🡄" onclick="decrTemp()">&nbsp;<p id="temp">37°F</p>&nbsp;<input type="button" id="incrTemp" value="🡆" onclick="incrTemp()">
+            </div>
+
+            <div class="buttonContainer">
+                <button id="returnButton" onclick="backToMain()">Return</button>
+
+                <button id="on-button" onclick="turnOn()">TURN ON</button>
+                <button id="off-button" onclick="turnOff()">TURN OFF</button>
+                <br>
+                <br class="container-spacing">
+                <button class="main-options" id="showInside" onclick="viewInside()">View Items</button>
+                <br class="container-spacing">
+                <button class="main-options" id="watchTV" onclick="watchTV()">Watch TV</button>
+                <br class="container-spacing">
+                <button class="main-options" id="browseWeb" onclick="browse()">Search Google</button>
+                <br class="container-spacing">
+                <button class="main-options" id="playMusic" onclick="playMusic()">Play Music</button>
+            </div>
+
+            <section id="fridge"><br><br><img src="./e06-ong_files/06-fridge.jpg" alt="fridge.png" width="200px" height="300px"></section>
+            <section id="tv"><br><br><img src="./e06-ong_files/06-tv.jpg" alt="tv.png" width="400px" height="255px"></section>
+            <section id="google"><br><br><img src="./e06-ong_files/06-web.jpg" alt="web.png" width="375px" height="150px"></section>
+            <section id="music"><br><br><img src="./e06-ong_files/40fba43abdee0e9e8826cf8e81c368dd.png" alt="spotify.png" width="400px" height="300px"></section>
+
+            
+
+            <div class="wraptext">
+                <small>© Matthew Ong, 2023</small>
+            </div>
+        </div>
+    </main>
+    
+
+
+<script>
+    function startClock() {
+        clock = document.getElementById("clock");
+        setInterval(function(){
+            var date = new Date();
+            var s = date.getSeconds();
+            if (s < 10) {
+                s = "0" + s;
+            }
+            var m = date.getMinutes();
+            if (m < 10) {
+                m = "0" + m;
+            }
+            var h = date.getHours();
+            if (h < 10) {
+                h = "0" + h;
+            }
+            clock.innerHTML = h + ":" + m + ":" + s 
+        }, 10);
+    }
+    startClock();
+    
+    //Function to turn on the fridge app. Hides the on button
+    //and displays the off button, as well as the main menu.
+    function turnOn() {
+        onButton = document.getElementById("on-button");
+        onButton.style.display = "none";
+        offButton = document.getElementById("off-button");
+        offButton.style.display = "initial";
+        menu = document.querySelectorAll(".main-options");
+        menu.forEach(element => {
+            element.style.display = 'initial';
+        });
+        copyrightText = document.querySelector(".wraptext");
+        copyrightText.style.display = "none";
+        document.getElementById("incrTemp").style.display = "initial";
+        document.getElementById("decrTemp").style.display = "initial";
+    }
+    //Function to turn off the fridge app. Hides the off button
+    //and hides the menu.
+    function turnOff() {
+        offButton = document.getElementById("off-button");
+        offButton.style.display = "none";
+        onButton = document.getElementById("on-button");
+        onButton.style.display = "initial";
+        menu = document.querySelectorAll(".main-options");
+        menu.forEach(element => {
+            element.style.display = "none";
+        });
+        copyrightText = document.querySelector(".wraptext");
+        copyrightText.style.display = "initial";
+        document.getElementById("incrTemp").style.display = "none";
+        document.getElementById("decrTemp").style.display = "none";
+        document.getElementById("errorMessage").style.display = "none";
+    }
+    function incrTemp() {
+        currentTemp = parseInt(document.getElementById("temp").innerHTML);
+        newTempValue = currentTemp + 1;
+        if (newTempValue <= 60) {
+            document.getElementById("temp").innerHTML = newTempValue + "°F";
+            document.getElementById("errorMessage").style.display = "none";
+        }
+        if (newTempValue == 60) {
+            document.getElementById("errorMessage").innerHTML = "<strong style = 'color: red;''>Temperature above 60°F cannot be set.</strong>"
+            document.getElementById("errorMessage").style.display = "initial";
+        }
+    }
+    function decrTemp() {
+        currentTemp = parseInt(document.getElementById("temp").innerHTML);
+        newTempValue = (currentTemp - 1);
+        if (newTempValue >= 20) {
+            document.getElementById("temp").innerHTML = newTempValue + "°F";
+            document.getElementById("errorMessage").style.display = "none";
+        }
+        if (newTempValue == 20) {
+            document.getElementById("errorMessage").innerHTML = "<strong style = 'color: red;''>Temperature below 20°F cannot be set.</strong>"
+            document.getElementById("errorMessage").style.display = "initial";
+            coldAnimation();
+        }
+    }
+    function clearMenu() {
+        offButton = document.getElementById("off-button");
+        offButton.style.display = "none";
+        menu = document.querySelectorAll(".main-options");
+        menu.forEach(element => {
+            element.style.display = "none";
+        });
+        spacing = document.querySelectorAll(".container-spacing");
+        spacing.forEach(element => {
+            element.style.display = "none";
+        });
+        tempDisplay = document.querySelectorAll(".tempContainer");
+        tempDisplay.forEach(element => {
+            element.style.display = "none";
+        });
+        document.getElementById("errorMessage").style.display = "none";
+    }
+    function viewInside() {
+        clearMenu();
+        document.getElementById("fridge").style.display = "initial";
+        document.getElementById("returnButton").style.display = "initial";
+    }
+    function watchTV() {
+        clearMenu();
+        document.getElementById("tv").style.display = "initial";
+        document.getElementById("returnButton").style.display = "initial";
+    }
+    function browse() {
+        clearMenu();
+        document.getElementById("google").style.display = "initial";
+        document.getElementById("returnButton").style.display = "initial";
+    }
+    function playMusic() {
+        clearMenu();
+        document.getElementById("music").style.display = "initial";
+        document.getElementById("returnButton").style.display = "initial";
+    }
+    function backToMain() {
+        offButton = document.getElementById("off-button");
+        offButton.style.display = "initial";
+        menu = document.querySelectorAll(".main-options");
+        menu.forEach(element => {
+            element.style.display = "initial";
+        });
+        spacing = document.querySelectorAll(".container-spacing");
+        spacing.forEach(element => {
+            element.style.display = "initial";
+        });
+        tempDisplay = document.querySelectorAll(".tempContainer");
+        tempDisplay.forEach(element => {
+            element.style.display = "initial";
+        });
+        document.getElementById("fridge").style.display = "none";
+        document.getElementById("tv").style.display = "none";
+        document.getElementById("music").style.display = "none";
+        document.getElementById("google").style.display = "none";
+        document.getElementById("returnButton").style.display = "none";
+    }
+</script>
+
+</body></html>
