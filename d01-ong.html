@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Design Principles</title>
+    <style>
+        html * {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        body {
+            background-image: url("https://wallpapercave.com/wp/wp4153933.jpg");
+            background-size: 175%;
+            background-repeat: no-repeat;
+        }
+        .centerContainer {
+            background-color: rgb(240, 252, 255);
+            position: fixed;
+            width: 70%;
+            height: 900px;
+            overflow-y: auto;
+            left: 40%;
+            top: 25px;
+            margin: 0 0 0 -25%;
+            padding-top: 25px;
+            padding-bottom: 5px;
+            border-width: 5px;
+            border-style: solid;
+            border-image: linear-gradient(blue, rgb(94, 227, 245), rgb(53, 131, 235)) 30;
+        }
+        .centerContainer .content {
+            margin-left: 2.5in;
+            margin-right: 2.5in;
+        }
+        #wrap{
+            overflow:hidden;
+            height:10px;
+            width:700px;
+            margin:auto;
+            margin-top:-30px;
+        }
+        #gradient{
+            height:20px;
+            width:580px;
+            margin:auto;
+            margin-top:-11px;
+            background: -webkit-radial-gradient(center, ellipse cover,  rgb(187, 238, 240) 0%,rgb(84, 146, 216) 19%,rgba(3,3,3,0) 80%,rgba(1,1,1,0) 100%); 
+        }
+    </style>
+</head>
+
+<body>
+
+<main>
+    <div class = "centerContainer">
+        <h1 style="text-align: center;">My Design Principles</h1><br>
+        <div id = "wrap"><div id = "gradient"></div></div>
+        <div class = "content">
+            <h2>Key Design Principles</h2>
+            <b>"Be as easy as email!"</b>
+            <ul>
+                <li>Make all of the content visible.</li><br>
+                <li>Establish consistency across all of the content.</li><br>
+                <li>Communicate results of actions with immediate <em>feedback</em>.</li><br>
+                <li>Use <em>Constraints</em> to restrict users from incompatible options.</li><br>
+                <li>Provide <em>Affordances</em> to guide users to desired actions.</li><br>
+                <li>Ensure that the product is <u>accessible</u></li><br>
+                <li>Do not make the user think.</li>
+            </ul>
+            <h2>Complexity Considerations</h2>
+            <ul>
+                <li>Do not include too much extra functionality, as it will increase the complexity of your app.</li><br>
+                <li>Understand the user's potential in using the app.</li><br>
+                <li>Recognize when there is a need to simplify user interactions.</li><br>
+                <li>Make the meanings behind icons crystal clear.</li>
+            </ul>
+            <h2>Cultural Considerations</h2>
+            <ul>
+                <li>Take into account the language, common gestures, and emotional aspects of specific cultures.</li><br>
+                <li>Know what gestures, symbols, or words are offensive or are understood differently by other cultures.</li><br>
+                <li>Take into account users' comfort with authority or uncertainty.</li><br>
+                <li>Provide variations of the same product that will be designed to accomodate other cultures.</li><br>
+                <li>Avoid idioms, gestures, or symbols that are only really understood by one culture.</li><br>
+                <li>Be aware of whether your audience's culture is masculine or feminine.</li><br>
+                <li>Be aware that, for different languages, people may read in a different direction entirely.</li><br>
+                <li>Design inclusively.</li>
+            </ul>
+            <h2>Conceptional Considerations</h2>
+            <ul>
+                <li>Strategize a familiar framework for your app using a <u>conceptional model</u></li><br>
+                <li>Make use of metaphors that make interacting with your app familiar, with affordances and constraints.</li><br>
+                <li>Design the conceptual model purposely.</li><br>
+                <li>Place <em>familiarity over novelty</em>, being aware of the drawbacks that can result from introducing something new.</li><br>
+                <li>Design the conceptual model with the users in mind, instead of letting it simply arise from the technology.</li><br>
+                <li>Empower the users to continue using familiar versions of an app for a limited time when making updates.</li><br>
+                <li>Ensure the conceptual model actually fits the mental model.</li><br>
+                <li>Do not make the user think about how a certain button or funciton works.</li>
+            </ul>
+            <h2>Human Centered Design</h2>
+            <ul>
+                <li>Provide discoverability, such that users can determine what actions are possible.</li><br>
+                <li>Provide <u>feedback</u>!</li><br>
+                <li>Make use of a conceptual model fitting a familiar mental model.</li><br>
+                <li>Include affordances, signifiers, and constraints.</li><br>
+                <li>Make good mappings between the controls and their actions.</li><br>
+                <li>Design with empathy and psychological understanding of your users.</li><br>
+                <li>Place the users' needs and capabilities first.</li><br>
+                <li>Let your app communicate with the users.</li>
+            </ul>
+            <h2>Cognitive Design Principles</h2>
+            <ul>
+                <li>Make information salient when it requires attention at a given stage of a task.</li><br>
+                <li>Avoid cluttering interfaces with information.</li><br>
+                <li>Categorize and space out items of information to avoid producing a noisy interface.</li><br>
+                <li>Use proper color contrast.</li><br>
+                <li>Utilize haptic feedback judiciously.</li><br>
+                <li>Reduce cognitive load for users by avoiding long and complicated procedures for completing tasks.</li><br>
+                <li>Promote recognition over recall.</li><br>
+                <li>Use <u>progressive disclosure</u> - presenting only increments of information so as to not overload the user.</li><br>
+                <li>Deliver what the user expects based on other sites or similar apps.</li><br>
+                <li>Encourage exploration within your interfaces.</li><br>
+                <li>Constrain and guide users to select appropriate actions when initially learning.</li>
+            </ul>
+            <h2>Accessibility Aspects</h2>
+            <ul>
+                <li>Design products that are <em>perceivable, operable, understandable, and robust</em>.</li><br>
+                <li>Give alerts and visual cues.</li><br>
+                <li>Provide clear instructions when asking for input.</li><br>
+                <li>Include a text-to-speech option or provide a way to enlarge the font.</li><br>
+                <li>Allow for keyboard-only input for users who cannot use a mouse cursor.</li><br>
+                <li>Label colors that are important.</li><br>
+                <li>Build in user-friendliness.</li><br>
+                <li>Take into account both mental and physical disabilities.</li>
+            </ul>
+            <h2>Emotional Aspects</h2>
+            <ul>
+                <li>Persuade using stories or anecdotes.</li><br>
+                <li>Influence people to take the right actions by influencing their emotions.</li><br>
+                <li>Include pleasant surprises.</li><br>
+                <li>Create ways for users to fix their own mistakes.</li><br>
+                <li>Ensure the look and feel of the app promotes positive emotions from the start.</li>
+            </ul>
+            <h2>Interface Design</h2>
+            <ul>
+                <li>Make the product self-explanatory, obvious.</li><br>
+                <li>Take advantage of conventions, and support hierarchies of information.</li><br>
+                <li>Eliminate distractions.</li><br>
+                <li>Clarify what is and is not clickable.</li><br>
+                <li>Break pages up into clearly-defined areas.</li><br>
+                <li>Keep paragraphs short.</li><br>
+                <li>Use bulleted lists, tables, and clear headings.</li>
+            </ul>
+            <h2>Aesthetics and Mobile Design</h2>
+            <ul>
+                <li>Have one scalable design.</li><br>
+                <li>Allow for scanning.</li><br>
+                <li>Enable the user to navigate one-handed.</li><br>
+                <li>Do not use redirects into separate windows.</li>
+            </ul>
+        </div>
+        <footer style = "text-align: center;">
+            <small>© Matthew Ong, 2023</small>
+        </footer>
+        <br>
+    </div>
+</main>
+
+</body>
+
+
+
+</html>
