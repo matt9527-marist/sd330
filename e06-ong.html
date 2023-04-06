@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Fridge App</title>
+    <style>
+
+        body {
+            background-image: url(https://th.bing.com/th/id/R.7a61b24ccfea53427ac74e6c84de3bc3?rik=WeCr3KyX4aSlSA&riu=http%3a%2f%2fbate.bm%2fwp-content%2fuploads%2f2020%2f09%2fkitchenaid-kbls19ktms-stainless-steel-left-hinge-18-5-cu-ft-architect-ii-bottom-freezer-refrigerator_110a36474d07fd6233f8cfc13d2186fe.jpg&ehk=8yx63Wg3R80j8HbIcMPAITCEwfHXrMGDT3daEn0iImc%3d&risl=&pid=ImgRaw&r=0);
+            background-position: center;
+            background-position-y: -175px;
+            background-size: 35cm;
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            background-image: linear-gradient(to right, rgba(220, 250, 250, 0.877), rgba(174, 246, 255, 0.753));
+            width: 1000px;
+            height: 500px;
+            left: 62.5%;
+            top: 125px;
+            position: fixed;
+            margin: 0 0 0 -40%;
+            text-align: center;
+            padding-top: 0px;
+            border-radius: 2%;
+            display: flex;
+            flex-direction: column;
+            border: 2px solid black;
+        }
+
+        .container .logo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin-left: 15px;
+            margin-top: 15px;
+        }
+
+        .container .weather {
+            background-color: rgb(226, 236, 255);
+            width: 300px;
+            height: 150px;
+            bottom: 0;
+            right: 0;
+            position: absolute;
+            margin-right: 40px;
+            margin-bottom: 40px;
+            border-radius: 5%;
+            display: none;
+            border: 2px solid black;
+        }
+
+        .container .weather #title {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 30px;
+            margin-left: 10px;
+            margin-top: 10px;
+        }
+
+        .container .weather #weather-icon {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin-right: 30px;
+            margin-top: 10px;
+        }
+
+        .container .weather #weather-temp {
+            position: absolute;
+            left: 0;
+            margin-top: 32px;
+            margin-left: 10px;
+        }
+
+        .container .weather #precipitation-chance {
+            position: absolute;
+            right: 0;
+            margin-top: 57px;
+            margin-right: 20px;
+            font-size: 14px;
+        }
+
+        .container .weather #wind {
+            position: absolute;
+            left: 0;
+            margin-top: 75px;
+            margin-left: 10px;
+            font-size: 14px;
+        }
+
+        .container .weather #humidity {
+            position: absolute;
+            left: 0;
+            margin-top: 85px;
+            margin-left: 10px;
+            font-size: 14px;
+        }
+
+        .container .clock {
+            padding-top: 1cm;
+            order: -1;
+        }
+
+        .container #clock {
+            text-align: center;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-size: 35px;
+            background-color: rgb(236, 250, 210);
+        }
+
+        .container .wraptext {
+            font-family: monospace;
+            text-align: center;
+            padding-top: 120px;
+        }
+
+        .container .clock #clock {
+            border: 2px solid black;
+            display: inline-block;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .container .tempContainer {
+            font-size: 47px;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding-bottom: 225px;
+            width: 25%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .container .tempContainer #temp {
+            display: inline-block;
+            border: 1px solid black;
+            font-size: 43.5px;
+            padding-left: 10px;
+            padding-right: 10px;
+            background-image: linear-gradient(to right, rgba(125, 243, 243, 75%), rgba(255, 191, 71, 75%));
+        }
+
+        .container .tempContainer #temp:hover {
+            background-color: black;
+            color: rgb(1, 13, 187);
+        }
+
+        .container .tempContainer #decrTemp {
+            font-size: 35px;
+            background-color: aqua;    
+            display: none;
+        }
+
+        .container .tempContainer #decrTemp:hover {
+            background-color: black;
+            color: white;
+        }
+
+        .container .tempContainer #incrTemp {
+            font-size: 35px;
+            background-color: rgb(248, 191, 86);   
+            display: none;     
+        }
+
+        .container .tempContainer #incrTemp:hover {
+            background-color: black;
+            color: white;
+        }
+
+        .container .buttonContainer button {
+            background-color: rgb(255, 250, 221);
+            border-radius: 10%;
+            color: black;
+            width: 20%;
+            font-size: 25px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        .container .buttonContainer button:hover {
+            background-color: black;
+            color: white;
+        }
+
+        .container .buttonContainer .main-options {
+            display: none;
+        }
+
+        .container .buttonContainer #on-button {
+            color: green;
+            margin-top: 15px;
+            width: 20%;
+            border-radius: 10%;
+        }
+
+        .container .buttonContainer #off-button {
+            color: red;
+            font-size: 20px;
+            display: none;
+            width: 17%;
+            bottom: 0;
+            left: 0;
+            border-radius: 10%;
+            position: absolute;
+            background-color: rgb(255, 227, 227);
+            margin-left: 175px;
+            margin-bottom: 80px;
+        }
+
+        .container .buttonContainer #off-button:hover {
+            background-color: black;
+            color: rgb(230, 13, 13);
+        }
+
+        .container .buttonContainer .main-options {
+            display: none;
+        }
+
+        .container #returnButton {
+            display: none;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 10%;
+            border-radius: 10%;
+            margin-right: 20px;
+            margin-bottom: 20px;
+            font-size: 25px;
+            background-color: rgb(252, 207, 207);
+        }
+
+        .container #returnButton:hover {
+            background-color: black;
+            color: white;
+        }
+
+        .container #fridge {
+            position: absolute;
+            margin-left: 250px;
+            margin-right: 250px;
+            left: 0;
+            right: 0;
+            display: none;
+        }
+
+        .container #fridge img {
+            border: 1px solid black;
+        }
+
+        .container #tv {
+            position: absolute;
+            margin-left: 200px;
+            margin-right: 200px;
+            left: 0;
+            right: 0;
+            display: none;
+        }
+
+        .container #google {
+            position: absolute;
+            margin-left: 200px;
+            margin-right: 200px;
+            left: 0;
+            right: 0;
+            display: none;
+        }
+
+        .container #music {
+            position: absolute;
+            margin-left: 200px;
+            margin-right: 200px;
+            left: 0;
+            right: 0;
+            display: none;
+        }
+
+        .container .shoppingListScreen {
+            display: none;
+        }
+
+        .container .shoppingListScreen #shoppingListTable {
+            margin-left: 20%;
+        }
+
+        .container .shoppingListScreen #shoppingListTable td {
+            border: 1px solid black;
+        }
+
+        .container .shoppingListScreen #shoppingListTable .item {
+            width: 250px;
+            font-size: 20px;
+            background-color: rgb(239, 255, 255);
+        }
+
+        .container .shoppingListScreen #shoppingListTable .itemCount {
+            width: 50px;
+            font-size: 20px;
+            background-color: rgb(202, 255, 226);
+        }
+
+        .container .shoppingListScreen #shoppingListTable .itemEdit #editButton {
+            width: 125px;
+            font-size: 20px;
+            background-color: rgb(250, 248, 218);
+        }
+
+        .container .shoppingListScreen #shoppingListTable .itemEdit #editButton:hover {
+            background-color: black;
+            color: white;
+        }
+
+        .container .shoppingListScreen #shoppingListTable .itemRemove #removeButton {
+            width: 100px;
+            font-size: 20px;
+            background-color: rgb(252, 207, 207);
+        }
+
+        .container .shoppingListScreen #shoppingListTable .itemRemove #removeButton:hover {
+            background-color: black;
+            color: white;
+        }
+
+        .container .shoppingListScreen #addItem {
+            width: 425px;
+            font-size: 20px;
+        }
+
+        .container .shoppingListScreen #count {
+            width: 50px;
+            font-size: 20px;
+        }
+
+        .container .shoppingListScreen #addButton {
+            width: 100px;
+            font-size: 20px;
+            background-color: rgb(250, 248, 218);;
+        }
+        
+        .container .shoppingListScreen #addButton:hover {
+            background-color: black;
+            color: white;
+        }
+
+        .container #errorMessage {
+            display: none;
+        }
+
+    </style>
+</head>
+<body onload="startClock(); setWeather();">
+    <main>
+        <div class = "container">
+            <div class = "logo">
+                <img src = "https://media.discordapp.net/attachments/536696115752337411/1091515584950317096/Chilling-removebg-preview.png" width="100px">
+            </div>
+            <div class = "clock">
+                <section id = "clock"></section>
+            </div>
+
+            <br>
+            <section id = "errorMessage"></section>
+
+            <div class = "buttonContainer">
+                <button id = "on-button" onclick="turnOn()">TURN ON</button>
+                <button id = "off-button" onclick="turnOff()">TURN OFF</button>
+                <br>
+                <button class = "main-options" id = "showInside" onclick="viewInside()">View Items</button>
+                &emsp;
+                <button class = "main-options" id = "watchTV" onclick="watchTV()">Watch TV</button>
+                &emsp;
+                <button class = "main-options" id = "playMusic" onclick = "playMusic()">Play Music</button>
+                <br class = "container-spacing">
+                <br class = "container-spacing">
+                <button class = "main-options" id = "browseWeb" onclick="browse()">Search Google</button>
+                &emsp;
+                <button class = "main-options" id = "shoppingList" onclick="shoppingList()">Shopping List</button>
+                &emsp;
+                <button class = "main-options" id = "timer" onclick="timer()">Set Timer</button>
+            </div>
+
+            <button id = "returnButton" onclick = "backToMain()">Return</button>
+
+            <div class = "tempContainer">
+                <input type="button" id = "decrTemp" value = "🡄" onclick="decrTemp()">&nbsp;<button id = "temp" onclick = "convertTemp()">37°F</button>&nbsp;<input type = "button" id = "incrTemp" value = "🡆" onclick="incrTemp()">
+            </div>
+
+
+
+            <section id = "fridge"><br><br><img src = "https://media.discordapp.net/attachments/536696115752337411/1092499051703976048/OIP.png" alt = "fridge.png" width = "425px" height = "450px"></section>
+            <section id = "tv"><br><br><img src = "https://media.discordapp.net/attachments/536696115752337411/1092500550022615092/R.png" alt = "tv.png" width = "640px" height = "360px"></section>
+            <section id = "google"><br><br><img src = "https://media.discordapp.net/attachments/536696115752337411/1092500752569737266/google-search-bar-100773887-orig.png?width=1156&height=701" alt = "web.png"  width = "640px" height = "360px"></section>
+            <section id = "music"><br><br><img src = "https://media.discordapp.net/attachments/536696115752337411/1092499351126954054/spotify-tablet-interface-new-1.png?width=1122&height=701" alt = "spotify.png" width = "640px" height = "360px"></section>
+
+
+
+            <div class = "shoppingListScreen"> 
+                    <input type = "text" id = "addItem" name = "" placeholder = "Enter shopping list item...">
+                    <input type = "number" id = "count" name = "" min = "1" max = "20" step = "1" value = "1">
+                    <button type = "submit" id = "addButton" onclick = "addItem()">Insert</button>
+                <br>
+                <table id = "shoppingListTable">
+                    <tr>
+                        <td id = "item-1" class = "item">Milk</td>
+                        <td id = "itemCount-1" class = "itemCount">x1</td>
+                        <td id = "itemEdit-1" class = "itemEdit" style = "border: none;"><button id = "editButton" onclick = "">Edit</button></td>
+                        <td id = "itemRemove-1" class = "itemRemove" style = "border: none;"><button id = "removeButton" onclick = "">Remove</button></td>
+                    </tr>
+                    <tr>
+                        <td id = "item-2" class = "item">Eggs</td>
+                        <td id = "itemCount-2" class = "itemCount">x2</td>
+                        <td id = "itemEdit-2" class = "itemEdit" style = "border: none;"><button id = "editButton" onclick = "">Edit</button></td>
+                        <td id = "itemRemove-2" class = "itemRemove" style = "border: none;"><button id = "removeButton" onclick = "">Remove</button></td>
+                    </tr>
+                    <tr>
+                        <td id = "item-3" class = "item">Cheese</td>
+                        <td id = "itemCount-3" class = "itemCount">x3</td>
+                        <td id = "itemEdit-3" class = "itemEdit" style = "border: none;"><button id = "editButton" onclick = "">Edit</button></td>
+                        <td id = "itemRemove-3" class = "itemRemove" style = "border: none;"><button id = "removeButton" onclick = "">Remove</button></td>
+                    </tr>
+                    <tr>
+                        <td id = "item-4" class = "item">Butter</td>
+                        <td id = "itemCount-4" class = "itemCount">x4</td>
+                        <td id = "itemEdit-4" class = "itemEdit" style = "border: none;"><button id = "editButton" onclick = "">Edit</button></td>
+                        <td id = "itemRemove-4" class = "itemRemove" style = "border: none;"><button id = "removeButton" onclick = "">Remove</button></td>
+                    </tr>
+                    <tr>
+                        <td id = "item-5" class = "item">Water</td>
+                        <td id = "itemCount-5" class = "itemCount">x5</td>
+                        <td id = "itemEdit-5" class = "itemEdit" style = "border: none;"><button id = "editButton" onclick = "">Edit</button></td>
+                        <td id = "itemRemove-5" class = "itemRemove" style = "border: none;"><button id = "removeButton" onclick = "">Remove</button></td>
+                    </tr>
+                    <tr>
+                        <td id = "item-6" class = "item"></td>
+                        <td id = "itemCount-6" class = "itemCount"></td>
+                        <td id = "itemEdit-6" class = "itemEdit" style = "border: none;"><button id = "editButton" onclick = "">Edit</button></td>
+                        <td id = "itemRemove-6" class = "itemRemove" style = "border: none;"><button id = "removeButton" onclick = "">Remove</button></td>
+                    </tr>
+                    <tr>
+                        <td id = "item-7" class = "item"></td>
+                        <td id = "itemCount-7" class = "itemCount"></td>
+                        <td id = "itemEdit-7" class = "itemEdit" style = "border: none;"><button id = "editButton" onclick = "">Edit</button></td>
+                        <td id = "itemRemove-7" class = "itemRemove" style = "border: none;"><button id = "removeButton" onclick = "">Remove</button></td>
+                    </tr>
+                </table>
+                <section id = "groceryListError"></section>
+                <button id = "clearList">Clear List</button>
+                <br>
+                <button id = "clearCounts">Clear Counts</button>
+            </div>
+
+
+
+            <div class = "weather">
+                <section id = "title">Weather</section>
+                <section id = "weather-icon"><img id = "weatherIcon" src = "" width = "80px" height = "80px"></section>
+                <br>
+                <section id = "weather-temp"></section>
+                <section id = "wind"></section>
+                <br>
+                <section id = "precipitation-chance"></section>
+                <section id = "humidity"></section>
+            </div>
+
+
+
+            <div class = "wraptext">
+                <small>© Matthew Ong, 2023</small>
+            </div>
+        </div>
+    </main>
+    
+</body>
+
+<script>
+
+    function startClock() {
+        clock = document.getElementById("clock");
+        setInterval(function(){
+            var date = new Date();
+            var s = date.getSeconds();
+            if (s < 10) {
+                s = "0" + s;
+            }
+            var m = date.getMinutes();
+            if (m < 10) {
+                m = "0" + m;
+            }
+            var h = date.getHours();
+            if (h < 10) {
+                h = "0" + h;
+            }
+            clock.innerHTML = h + ":" + m + ":" + s 
+        }, 10);
+    }
+    startClock(); //Get the clock to run immediately.
+    
+
+
+    function setWeather() {
+        weatherTypes = ["Sunny", "Cloudy", "Rainy", "Stormy"];
+        let sun = "https://media.discordapp.net/attachments/536696115752337411/1092207565921849425/R4141.png"; //CHANGE THESE TO FULLY SPECIFIED NAMES WHEN PORTING TO GITHUB.
+        let cloud = "https://media.discordapp.net/attachments/536696115752337411/1092207566471315476/weather02-1024.png?width=701&height=701";
+        let rain = "https://media.discordapp.net/attachments/536696115752337411/1092207566135754752/Rain_Night_Rain_Raindrops_Apple_iOS_Flat_Weather-512.png";
+        let storm = "https://media.discordapp.net/attachments/536696115752337411/1092207566861373541/weather-23-512.png";
+        randomWeather = genRandomNumber(0, 3);
+        if (randomWeather == 0) {
+            document.getElementById("weatherIcon").src = sun;
+            precipChance = genRandomNumber(0, 1);
+            windSpeed = genRandomNumber(0, 15);
+            humidity = genRandomNumber(5, 30);
+            document.getElementById("precipitation-chance").innerHTML = "Precipitation: " + precipChance + "%";
+            document.getElementById("wind").innerHTML = "Wind: " + windSpeed + " MPH";
+            document.getElementById("humidity").innerHTML = "Humidity: " + humidity + "%";
+        }
+        else if (randomWeather == 1) {
+            document.getElementById("weatherIcon").src = cloud;
+            precipChance = genRandomNumber(0, 15);
+            windSpeed = genRandomNumber(0, 30);
+            humidity = genRandomNumber(5, 30);
+            document.getElementById("precipitation-chance").innerHTML = "Precipitation: " + precipChance + "%";
+            document.getElementById("wind").innerHTML = "Wind: " + windSpeed + " MPH";
+            document.getElementById("humidity").innerHTML = "Humidity: " + humidity + "%";
+        }
+        else if (randomWeather == 2) {
+            document.getElementById("weatherIcon").src = rain;
+            precipChance = genRandomNumber(15, 55);
+            windSpeed = genRandomNumber(10, 40);
+            humidity = genRandomNumber(15, 65);
+            document.getElementById("precipitation-chance").innerHTML = "Precipitation: " + precipChance + "%";
+            document.getElementById("wind").innerHTML = "Wind: " + windSpeed + " MPH";
+            document.getElementById("humidity").innerHTML = "Humidity: " + humidity + "%";
+        }
+        else if (randomWeather == 3) {
+            document.getElementById("weatherIcon").src = storm;
+            precipChance = genRandomNumber(55, 100);
+            windSpeed = genRandomNumber(20, 65);
+            humidity = genRandomNumber(25, 65);
+            document.getElementById("precipitation-chance").innerHTML = "Precipitation: " + precipChance + "%";
+            document.getElementById("wind").innerHTML = "Wind: " + windSpeed + " MPH";
+            document.getElementById("humidity").innerHTML = "Humidity: " + humidity + "%";
+        }
+        //Randomly deciding the temperature using random values/operations. 
+        randomWeatherHighTemp = genRandomNumber(60, 70);
+        randomWeatherLowTemp = genRandomNumber(30, 40);
+        randomWeatherLowTemp + 5;
+        randomWeatherHighTemp - 5;
+        randomWeatherAverageTemp = genRandomNumber(randomWeatherLowTemp, randomWeatherHighTemp);
+        document.getElementById("weather-temp").innerHTML = "<b style = 'font-size: 25px;'>" + randomWeatherAverageTemp + "° </b> High: " + randomWeatherHighTemp + " Low: " + randomWeatherLowTemp;    
+    }
+
+
+
+    function genRandomNumber (min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
+
+
+    //Function to turn on the fridge app. Hides the on button
+    //and displays the off button, as well as the main menu.
+    function turnOn() {
+        onButton = document.getElementById("on-button");
+        onButton.style.display = "none";
+        offButton = document.getElementById("off-button");
+        offButton.style.display = "initial";
+        menu = document.querySelectorAll(".main-options");
+        menu.forEach(element => {
+            element.style.display = 'initial';
+        });
+        copyrightText = document.querySelector(".wraptext");
+        copyrightText.style.display = "none";
+        document.getElementById("incrTemp").style.display = "initial";
+        document.getElementById("decrTemp").style.display = "initial";
+        tempDisplay = document.querySelectorAll(".tempContainer");
+        tempDisplay.forEach(element => {
+            element.style.paddingBottom = "70px";
+        });
+        weather = document.querySelectorAll(".weather");
+        weather.forEach(element => {
+            element.style.display = 'initial';
+        });
+    }
+
+
+
+    //Function to turn off the fridge app. Hides the off button
+    //and hides the menu.
+    function turnOff() {
+        offButton = document.getElementById("off-button");
+        offButton.style.display = "none";
+        onButton = document.getElementById("on-button");
+        onButton.style.display = "initial";
+        menu = document.querySelectorAll(".main-options");
+        menu.forEach(element => {
+            element.style.display = "none";
+        });
+        copyrightText = document.querySelector(".wraptext");
+        copyrightText.style.display = "initial";
+        document.getElementById("incrTemp").style.display = "none";
+        document.getElementById("decrTemp").style.display = "none";
+        document.getElementById("errorMessage").style.display = "none";
+        weather = document.querySelectorAll(".weather");
+        weather.forEach(element => {
+            element.style.display = 'none';
+        });
+        tempDisplay = document.querySelectorAll(".tempContainer");
+        tempDisplay.forEach(element => {
+            element.style.paddingBottom = "225px";
+        });
+    }
+
+
+
+    function incrTemp() {
+        currentUnitForm = document.getElementById("temp").innerHTML.slice(-1);
+        if (currentUnitForm == "F") {
+            currentTemp = parseInt(document.getElementById("temp").innerHTML);
+            newTempValue = currentTemp + 1;
+            if (newTempValue <= 60) {
+                document.getElementById("temp").innerHTML = newTempValue + "°F";
+                document.getElementById("errorMessage").style.display = "none";
+            }
+            if (newTempValue == 60) {
+                document.getElementById("errorMessage").innerHTML = "<strong style = 'color: red;''>Temperature above 60°F cannot be set.</strong>"
+                document.getElementById("errorMessage").style.display = "initial";
+            }
+        }
+        if (currentUnitForm == "C") {
+            currentTemp = parseInt(document.getElementById("temp").innerHTML);
+            newTempValue = currentTemp + 1;
+            if (newTempValue <= 15) {
+                document.getElementById("temp").innerHTML = newTempValue + "°C";
+                document.getElementById("errorMessage").style.display = "none";
+            }
+            if (newTempValue == 15) {
+                document.getElementById("errorMessage").innerHTML = "<strong style = 'color: red;''>Temperature above 15°C cannot be set.</strong>"
+                document.getElementById("errorMessage").style.display = "initial";
+            }
+        }
+    }
+
+
+
+    function decrTemp() {
+        currentUnitForm = document.getElementById("temp").innerHTML.slice(-1);
+        if (currentUnitForm == "F") {
+            currentTemp = parseInt(document.getElementById("temp").innerHTML);
+            newTempValue = (currentTemp - 1);
+            if (newTempValue >= 20) {
+                document.getElementById("temp").innerHTML = newTempValue + "°F";
+                document.getElementById("errorMessage").style.display = "none";
+            }
+            if (newTempValue == 20) {
+                document.getElementById("errorMessage").innerHTML = "<strong style = 'color: red;''>Temperature below 20°F cannot be set.</strong>"
+                document.getElementById("errorMessage").style.display = "initial";
+            }
+        }
+        if (currentUnitForm == "C") {
+            currentTemp = parseInt(document.getElementById("temp").innerHTML);
+            newTempValue = (currentTemp - 1);
+            if (newTempValue >= -6) {
+                document.getElementById("temp").innerHTML = newTempValue + "°C";
+                document.getElementById("errorMessage").style.display = "none";
+            }
+            if (newTempValue == -6) {
+                document.getElementById("errorMessage").innerHTML = "<strong style = 'color: red;''>Temperature below 20°C cannot be set.</strong>"
+                document.getElementById("errorMessage").style.display = "initial";
+            }
+        }
+    }
+
+
+    //Converts the current temperature to Celsius and back to Fahrenheit.
+    function convertTemp() {
+        currentUnitForm = document.getElementById("temp").innerHTML.slice(-1);
+        if (currentUnitForm == "F") {
+            currentTemp = parseInt(document.getElementById("temp").innerHTML);
+            var celsius = (currentTemp - 32) * 5 / 9;
+            document.getElementById("temp").innerHTML = Math.floor(celsius) + "°C";
+        }
+        else {
+            currentTemp = parseInt(document.getElementById("temp").innerHTML);
+            var fahreinheit = currentTemp * 9 / 5 + 32;
+            document.getElementById("temp").innerHTML = Math.floor(fahreinheit) + "°F";
+        }
+    }
+
+
+
+    //clearMenu() called whenever an option on the main menu is selected, bringing the user to that option's screen.
+    //Clears out all elements within the primary container except for time.
+    function clearMenu() {
+        offButton = document.getElementById("off-button");
+        offButton.style.display = "none";
+        menu = document.querySelectorAll(".main-options");
+        menu.forEach(element => {
+            element.style.display = "none";
+        });
+        spacing = document.querySelectorAll(".container-spacing");
+        spacing.forEach(element => {
+            element.style.display = "none";
+        });
+        tempDisplay = document.querySelectorAll(".tempContainer");
+        tempDisplay.forEach(element => {
+            element.style.display = "none";
+        });
+        buttonDisplay = document.querySelectorAll(".buttonContainer");
+        buttonDisplay.forEach(element => {
+            element.style.display = "none";
+        });
+        document.getElementById("errorMessage").style.display = "none";
+        weather.forEach(element => {
+            element.style.display = 'none';
+        });
+        document.getElementById("clock").style.display = "none";
+    }
+
+
+
+    function viewInside() {
+        clearMenu();
+        document.getElementById("fridge").style.display = "initial";
+        document.getElementById("returnButton").style.display = "initial";
+    }
+
+
+
+    function watchTV() {
+        clearMenu();
+        document.getElementById("tv").style.display = "initial";
+        document.getElementById("returnButton").style.display = "initial";
+    }
+
+
+
+    function browse() {
+        clearMenu();
+        document.getElementById("google").style.display = "initial";
+        document.getElementById("returnButton").style.display = "initial";
+    }
+
+
+
+    function playMusic() {
+        clearMenu();
+        document.getElementById("music").style.display = "initial";
+        document.getElementById("returnButton").style.display = "initial";
+    }
+
+
+
+    function shoppingList() {
+        clearMenu();
+        document.getElementById("returnButton").style.display = "initial";
+        shoppingScreen = document.querySelectorAll(".shoppingListScreen");
+        shoppingScreen.forEach(element => {
+            element.style.display = "initial";
+        });
+    }
+
+
+    
+    //Adds an item to the first open space in a list.
+    function addItem() {
+        input = document.getElementById("addItem");
+        inputCount = document.getElementById("count");
+        button = document.getElementById("addButton");
+        inputData = input.value; //The grocery item to be added to the list.
+        inputQuantity = inputCount.value; //The quantity of that item. 
+        elements = document.getElementsByClassName("item");
+        let fullList = true;
+        for (let i = 1; i <= elements.length; i++) {
+        if (document.getElementById("item-" + i).innerHTML == "") {
+            fullList = false;
+            document.getElementById("item-" + i).innerHTML = inputData;
+            document.getElementById("itemCount-" + i).innerHTML = inputQuantity;
+            break;
+            } else if (i == elements.length && fullList == true) {
+                document.getElementById("groceryListError").innerHTML = "<strong style = 'color: red;'>The list is full.</strong>"
+            }
+        }
+    }
+
+
+
+    function timer() {
+
+    }
+
+
+    
+    //The function called by the "Return" button, restoring all main menu options originally in the container.
+    function backToMain() {
+        offButton = document.getElementById("off-button");
+        offButton.style.display = "initial";
+        buttonDisplay = document.querySelectorAll(".buttonContainer");
+        buttonDisplay.forEach(element => {
+            element.style.display = "initial";
+        });
+        menu = document.querySelectorAll(".main-options");
+        menu.forEach(element => {
+            element.style.display = "initial";
+        });
+        spacing = document.querySelectorAll(".container-spacing");
+        spacing.forEach(element => {
+            element.style.display = "initial";
+        });
+        tempDisplay = document.querySelectorAll(".tempContainer");
+        tempDisplay.forEach(element => {
+            element.style.display = "initial";
+        });
+        document.getElementById("fridge").style.display = "none";
+        document.getElementById("tv").style.display = "none";
+        document.getElementById("music").style.display = "none";
+        document.getElementById("google").style.display = "none";
+        document.getElementById("returnButton").style.display = "none";
+        shoppingScreen = document.querySelectorAll(".shoppingListScreen");
+        shoppingScreen.forEach(element => {
+            element.style.display = "none";
+        });
+        weather.forEach(element => {
+            element.style.display = 'initial';
+        });
+        document.getElementById("clock").style.display = "initial";
+    }
+
+
+
+</script>
+
+</html>
