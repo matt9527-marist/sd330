@@ -128,6 +128,11 @@
             padding-right: 20px;
         }
 
+        .container .clock #clock:hover {
+            background-color: black;
+            color: white;
+        }
+
         .container .tempContainer {
             font-size: 47px;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -135,7 +140,7 @@
             bottom: 0;
             left: 0;
             right: 0;
-            padding-bottom: 225px;
+            padding-bottom: 225px;  
             width: 25%;
             margin-left: auto;
             margin-right: auto;
@@ -257,12 +262,63 @@
             border: 1px solid black;
         }
 
-        .container #tv {
+        .container .tv {
+            display: none;
+        }
+
+        .container .tv #tvScreen {
             position: absolute;
             margin-left: 200px;
             margin-right: 200px;
             left: 0;
             right: 0;
+            top: 0;
+        }
+
+        .container .tv #playTV {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin-bottom: 50px;
+            margin-right: auto;
+            margin-left: auto;
+            width: 125px;
+            font-size: 30px;
+            background-color: rgb(255, 250, 221);
+        }
+
+        .container .tv #playTV:hover {
+            background-color: black;
+            color: white;
+        }
+
+        .container .tv #stopTV {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin-bottom: 50px;
+            margin-right: auto;
+            margin-left: auto;
+            width: 125px;
+            font-size: 30px;
+            background-color: rgb(255, 250, 221);
+        }
+
+        .container .tv #stopTV:hover {
+            background-color: black;
+            color: white;
+        }
+
+        .container .tv #tvShow {
+            position: absolute;
+            margin-left: 200px;
+            margin-right: 200px;
+            padding-top: 25px;
+            left: 0;
+            right: 0;
+            top: 0;
             display: none;
         }
 
@@ -275,13 +331,49 @@
             display: none;
         }
 
-        .container #music {
+        .container .music {
             position: absolute;
             margin-left: 200px;
             margin-right: 200px;
             left: 0;
             right: 0;
             display: none;
+        }
+
+        .container .music #song {
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .container .music #previousSong {
+            position: absolute;
+            background-color: rgb(218, 250, 225);
+            font-size: 30px;
+            width: 135px;
+            left: 0;
+        }
+
+        .container .music #previousSong:hover {
+            background-color: black;
+            color: white;
+        }
+
+        .container .music #nextSong {
+            position: absolute;
+            background-color: rgb(218, 250, 225);
+            font-size: 30px;
+            width: 135px;
+            right: 0;
+        }
+
+        .container .music #nextSong:hover {
+            background-color: black;
+            color: white;
+        }
+
+        .container .music #musicText {
+            color: blue;
+            font-size: 18px;
         }
 
         .container .shoppingListScreen {
@@ -514,111 +606,136 @@
             display: none;
         }
 
+        .container #timeFormatCheck {
+            display: none;
+        }
+
     </style>
 </head>
 <body onload="startClock(); setWeather();">
     <main>
+        <audio id="buttonSound">
+            <source src="sound1.mp3" type="audio/ogg">
+        </audio>
         <div class = "container">
             <div class = "logo">
                 <img src = "logo.png" alt = "https://media.discordapp.net/attachments/536696115752337411/1091515584950317096/Chilling-removebg-preview.png" width="100px">
             </div>
             <div class = "clock">
-                <section id = "clock"></section>
+                <button id = "clock" onclick = "toggleClock(); playSound('buttonClick.ogg')"></button>
             </div>
+            <section id = "timeFormatCheck">1</section>
 
             <br>
             <section id = "errorMessage"></section>
 
             <div class = "buttonContainer">
-                <button id = "on-button" onclick="turnOn()">TURN ON</button>
-                <button id = "off-button" onclick="turnOff()">TURN OFF</button>
+                <button id = "on-button" onclick="turnOn(); playSound('buttonClick.ogg');">TURN ON</button>
+                <button id = "off-button" onclick="turnOff(); playSound('buttonClick.ogg');">TURN OFF</button>
                 <br>
-                <button class = "main-options" id = "showInside" onclick="viewInside()">View Items</button>
+                <button class = "main-options" id = "showInside" onclick="viewInside(); playSound('buttonClick.ogg');">View Items</button>
                 &emsp;
-                <button class = "main-options" id = "watchTV" onclick="watchTV()">Watch TV</button>
+                <button class = "main-options" id = "watchTV" onclick="watchTV(); playSound('buttonClick.ogg');">Watch TV</button>
                 &emsp;
-                <button class = "main-options" id = "playMusic" onclick = "playMusic()">Play Music</button>
+                <button class = "main-options" id = "playMusic" onclick = "playMusic(); playSound('buttonClick.ogg');">Play Music</button>
                 <br class = "container-spacing">
                 <br class = "container-spacing">
-                <button class = "main-options" id = "browseWeb" onclick="browse()">Search Google</button>
+                <button class = "main-options" id = "browseWeb" onclick="browse(); playSound('buttonClick.ogg');">Search Google</button>
                 &emsp;
-                <button class = "main-options" id = "shoppingList" onclick="shoppingList()">Shopping List</button>
+                <button class = "main-options" id = "shoppingList" onclick="shoppingList(); playSound('buttonClick.ogg');">Shopping List</button>
                 &emsp;
-                <button class = "main-options" id = "timer" onclick="timer()">Set Timer</button>
+                <button class = "main-options" id = "timer" onclick="timer(); playSound('buttonClick.ogg');">Set Timer</button>
             </div>
 
-            <button id = "returnButton" onclick = "backToMain()">Return</button>
+            <button id = "returnButton" onclick = "playSound('buttonClick.ogg'); backToMain();">Return</button>
 
             <div class = "tempContainer">
-                <input type="button" id = "decrTemp" value = "🡄" onclick="decrTemp()">&nbsp;<button id = "temp" onclick = "convertTemp()">32°F</button>&nbsp;<input type = "button" id = "incrTemp" value = "🡆" onclick="incrTemp()">
+                <input type="button" id = "decrTemp" value = "🡄" onclick="decrTemp(); playSound('decrtempsound.ogg');">&nbsp;<button id = "temp" onclick = "convertTemp(); playSound('buttonClick.ogg');">32°F</button>&nbsp;<input type = "button" id = "incrTemp" value = "🡆" onclick="incrTemp(); playSound('incrtempsound.ogg');">
             </div>
 
 
 
             <section id = "fridge"><br><br><img src = "inside.png" alt = "https://media.discordapp.net/attachments/536696115752337411/1092499051703976048/OIP.png" width = "425px" height = "450px"></section>
-            <section id = "tv"><br><br><img src = "tv.png" alt = "https://media.discordapp.net/attachments/536696115752337411/1092500550022615092/R.png" width = "640px" height = "360px"></section>
-            <section id = "google"><br><br><img src = "browser.png" alt = "https://media.discordapp.net/attachments/536696115752337411/1092500752569737266/google-search-bar-100773887-orig.png?width=1156&height=701"  width = "640px" height = "360px"></section>
-            <section id = "music"><br><br><img src = "spotify.png" alt = "https://media.discordapp.net/attachments/536696115752337411/1092499351126954054/spotify-tablet-interface-new-1.png?width=1122&height=701" width = "640px" height = "360px"></section>
 
+            <div class = "tv">
+                <section id = "tvScreen"><br><br><img src = "tv.png" alt = "https://media.discordapp.net/attachments/536696115752337411/1092500550022615092/R.png" width = "640px" height = "360px"></section>
+                <section id = "tvShow"><iframe width="640" height="360" src="https://www.youtube.com/embed/YDbnY9Obsfs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></section>
+                <button id = "playTV" onclick = "playTV(); playSound('buttonClick.ogg');">Play</button>
+                <button id = "stopTV" onclick = "stopTV(); playSound('buttonClick.ogg');">Stop</button>
+            </div>
+
+            <section id = "google"><br><br><img src = "browser.png" alt = "https://media.discordapp.net/attachments/536696115752337411/1092500752569737266/google-search-bar-100773887-orig.png?width=1156&height=701"  width = "640px" height = "360px"></section>
+            
+            <div class = "music">
+            <section id = "spotifyScreen"><br><br><img src = "spotify.png" alt = "https://media.discordapp.net/attachments/536696115752337411/1092499351126954054/spotify-tablet-interface-new-1.png?width=1122&height=701" width = "580px" height = "360px"></section>
+           
+            <button id = "previousSong" onclick = "prevSong(); playSound('buttonClick.ogg');">Previous</button>
+            <audio id = "song" controls>
+                <source src="" type="audio/mp3">
+            </audio>
+            <button id = "nextSong" onclick = "nextSong(); playSound('buttonClick.ogg');">Next</button>
+            <br><p id = "musicText"></p>
+
+            </div>
 
 
             <div class = "shoppingListScreen"> 
                     <input type = "text" id = "addItem" name = "" placeholder = "Enter shopping list item...">
                     <input type = "number" id = "count" name = "" min = "1" max = "99" step = "1" value = "1">
-                    <button type = "submit" id = "addButton" onclick = "addItem()">Insert</button>
+                    <button type = "submit" id = "addButton" onclick = "addItem(); playSound('buttonClick.ogg');">Insert</button>
                 <br>
                 <table id = "shoppingListTable">
                     <tr>
                         <td id = "item-1" class = "item">Milk</td>
                         <td id = "itemCount-1" class = "itemCount">x1</td>
-                        <td id = "itemEdit-1" class = "itemEdit" style = "border: none;"><button id = "editButton" onclick = "itemEdit(1)">Edit</button></td>
-                        <td id = "itemRemove-1" class = "itemRemove" style = "border: none;"><button id = "removeButton" onclick = "removeItem(1)">Remove</button></td>
+                        <td id = "itemEdit-1" class = "itemEdit" style = "border: none;"><button id = "editButton" onclick = "itemEdit(1); playSound('buttonClick.ogg');">Edit</button></td>
+                        <td id = "itemRemove-1" class = "itemRemove" style = "border: none;"><button id = "removeButton" onclick = "removeItem(1); playSound('buttonClick.ogg');">Remove</button></td>
                     </tr>
                     <tr>
                         <td id = "item-2" class = "item">Eggs</td>
                         <td id = "itemCount-2" class = "itemCount">x2</td>
-                        <td id = "itemEdit-2" class = "itemEdit" style = "border: none;"><button id = "editButton" onclick = "itemEdit(2)">Edit</button></td>
-                        <td id = "itemRemove-2" class = "itemRemove" style = "border: none;"><button id = "removeButton" onclick = "removeItem(2)">Remove</button></td>
+                        <td id = "itemEdit-2" class = "itemEdit" style = "border: none;"><button id = "editButton" onclick = "itemEdit(2); playSound('buttonClick.ogg');">Edit</button></td>
+                        <td id = "itemRemove-2" class = "itemRemove" style = "border: none;"><button id = "removeButton" onclick = "removeItem(2); playSound('buttonClick.ogg');">Remove</button></td>
                     </tr>
                     <tr>
                         <td id = "item-3" class = "item">Cheese</td>
                         <td id = "itemCount-3" class = "itemCount">x3</td>
-                        <td id = "itemEdit-3" class = "itemEdit" style = "border: none;"><button id = "editButton" onclick = "itemEdit(3)">Edit</button></td>
-                        <td id = "itemRemove-3" class = "itemRemove" style = "border: none;"><button id = "removeButton" onclick = "removeItem(3)">Remove</button></td>
+                        <td id = "itemEdit-3" class = "itemEdit" style = "border: none;"><button id = "editButton" onclick = "itemEdit(3); playSound('buttonClick.ogg');">Edit</button></td>
+                        <td id = "itemRemove-3" class = "itemRemove" style = "border: none;"><button id = "removeButton" onclick = "removeItem(3); playSound('buttonClick.ogg');">Remove</button></td>
                     </tr>
                     <tr>
                         <td id = "item-4" class = "item">Butter</td>
                         <td id = "itemCount-4" class = "itemCount">x4</td>
-                        <td id = "itemEdit-4" class = "itemEdit" style = "border: none;"><button id = "editButton" onclick = "itemEdit(4)">Edit</button></td>
-                        <td id = "itemRemove-4" class = "itemRemove" style = "border: none;"><button id = "removeButton" onclick = "removeItem(4)">Remove</button></td>
+                        <td id = "itemEdit-4" class = "itemEdit" style = "border: none;"><button id = "editButton" onclick = "itemEdit(4); playSound('buttonClick.ogg');">Edit</button></td>
+                        <td id = "itemRemove-4" class = "itemRemove" style = "border: none;"><button id = "removeButton" onclick = "removeItem(4); playSound('buttonClick.ogg');">Remove</button></td>
                     </tr>
                     <tr>
                         <td id = "item-5" class = "item">Water</td>
                         <td id = "itemCount-5" class = "itemCount">x5</td>
-                        <td id = "itemEdit-5" class = "itemEdit" style = "border: none;"><button id = "editButton" onclick = "itemEdit(5)">Edit</button></td>
-                        <td id = "itemRemove-5" class = "itemRemove" style = "border: none;"><button id = "removeButton" onclick = "removeItem(5)">Remove</button></td>
+                        <td id = "itemEdit-5" class = "itemEdit" style = "border: none;"><button id = "editButton" onclick = "itemEdit(5); playSound('buttonClick.ogg');">Edit</button></td>
+                        <td id = "itemRemove-5" class = "itemRemove" style = "border: none;"><button id = "removeButton" onclick = "removeItem(5); playSound('buttonClick.ogg');">Remove</button></td>
                     </tr>
                     <tr>
                         <td id = "item-6" class = "item"></td>
                         <td id = "itemCount-6" class = "itemCount"></td>
-                        <td id = "itemEdit-6" class = "itemEdit" style = "border: none;"><button id = "editButton" onclick = "itemEdit(6)">Edit</button></td>
-                        <td id = "itemRemove-6" class = "itemRemove" style = "border: none;"><button id = "removeButton" onclick = "removeItem(6)">Remove</button></td>
+                        <td id = "itemEdit-6" class = "itemEdit" style = "border: none;"><button id = "editButton" onclick = "itemEdit(6); playSound('buttonClick.ogg');">Edit</button></td>
+                        <td id = "itemRemove-6" class = "itemRemove" style = "border: none;"><button id = "removeButton" onclick = "removeItem(6); playSound('buttonClick.ogg');">Remove</button></td>
                     </tr>
                     <tr>
                         <td id = "item-7" class = "item"></td>
                         <td id = "itemCount-7" class = "itemCount"></td>
-                        <td id = "itemEdit-7" class = "itemEdit" style = "border: none;"><button id = "editButton" onclick = "itemEdit(7)">Edit</button></td>
-                        <td id = "itemRemove-7" class = "itemRemove" style = "border: none;"><button id = "removeButton" onclick = "removeItem(7)">Remove</button></td>
+                        <td id = "itemEdit-7" class = "itemEdit" style = "border: none;"><button id = "editButton" onclick = "itemEdit(7); playSound('buttonClick.ogg');">Edit</button></td>
+                        <td id = "itemRemove-7" class = "itemRemove" style = "border: none;"><button id = "removeButton" onclick = "removeItem(7); playSound('buttonClick.ogg');">Remove</button></td>
                     </tr>
                 </table>
                 <section id = "groceryListError"></section>
                 <br>
-                <button id = "clearList" onclick = "clearShoppingList()">Clear List</button>
+                <button id = "clearList" onclick = "clearShoppingList(); playSound('buttonClick.ogg');">Clear List</button>
                 <br><br><br>
-                <button id = "clearCounts" onclick = "clearShoppingListCounts()">Reset Counts</button>
+                <button id = "clearCounts" onclick = "clearShoppingListCounts(); playSound('buttonClick.ogg');">Reset Counts</button>
                 <input type = "text" id = "editItem" placeholder = "Enter new item...">
                 <input type = "number" id = "editItemQuantity" min = "1" max = "20" step = "1" value = "1">
-                <button type = "submit" id = "editItemButton" onclick = "editItem()">Edit</button>
+                <button type = "submit" id = "editItemButton" onclick = "editItem(); playSound('buttonClick.ogg');">Edit</button>
                 <br><section id = "editText"></section>
             </div>
 
@@ -626,17 +743,17 @@
                 <input type = "number" id = "timerHours"  class = "timerInputs" min = "1" max = "60" step = "1" value = "00">
                 <input type = "number" id = "timerMinutes" class = "timerInputs" min = "1" max = "60" step = "1" value = "00">
                 <input type = "number" id = "timerSeconds" class = "timerInputs" min = "1" max = "60" step = "1" value = "00">
-                <button type = "submit" id = "setTimerButton" onclick = "setTimer()">Set Timer</button>
+                <button type = "submit" id = "setTimerButton" onclick = "setTimer(); playSound('buttonClick.ogg');">Set Timer</button>
 
                 <br>
                 <section id = "timerSetAlert">A timer has been set at</section>
 
                 <section id = "timerDisplay">00:00:00</section>
                 <br>
-                <button id = "stopTimerButton" onclick = "stopTimer()">STOP TIMER</button>
-                <button id = "resumeTimerButton" onclick = "resumeTimer()">RESUME TIMER</button>
+                <button id = "stopTimerButton" onclick = "stopTimer(); playSound('buttonClick.ogg');">STOP TIMER</button>
+                <button id = "resumeTimerButton" onclick = "resumeTimer(); playSound('buttonClick.ogg');">RESUME TIMER</button>
                 <br>
-                <button id = "endTimerButton" onclick = "endTimer()">END TIMER</button>
+                <button id = "endTimerButton" onclick = "endTimer(); playSound('buttonClick.ogg');">END TIMER</button>
             </div>
 
             <div class = "weather">
@@ -661,7 +778,6 @@
 </body>
 
 <script>
-
     function startClock() {
         clock = document.getElementById("clock");
         setInterval(function(){
@@ -678,11 +794,39 @@
             if (h < 10) {
                 h = "0" + h;
             }
-            clock.innerHTML = h + ":" + m + ":" + s 
+            if (document.getElementById("timeFormatCheck").innerHTML == 0) {
+                //Convert military time to standard time
+                var suffix = "AM";
+                if (h >= 12) {
+                    suffix = "PM";
+                    h = h - 12;
+                }
+                if (h == 0) {
+                    h = 12;
+                }
+                clock.innerHTML = h + ":" + m + ":" + s + " " + suffix;
+            } else {
+                clock.innerHTML = h + ":" + m + ":" + s 
+            }
         }, 10);
     }
     startClock(); //Get the clock to run immediately.
     
+    function toggleClock() {
+        var check = document.getElementById("timeFormatCheck");
+        if (check.innerHTML === "0") {
+            check.innerHTML = "1";
+        } else {
+            check.innerHTML = "0";
+        }
+    }
+
+    function playSound(soundID) {
+        var audio = document.getElementById("buttonSound");
+        audio.src = soundID;
+        audio.play();
+    } 
+
 
 
     function setWeather() {
@@ -916,8 +1060,34 @@
 
     function watchTV() {
         clearMenu();
-        document.getElementById("tv").style.display = "initial";
+        tv = document.querySelectorAll(".tv");
+        tv.forEach(element => {
+            element.style.display = "initial";
+        });
+        document.getElementById("tvScreen").style.display = "initial";
+        document.getElementById("stopTV").style.display = "none";
         document.getElementById("returnButton").style.display = "initial";
+        if (document.getElementById("tvShow").style.display == "initial") {
+            document.getElementById("stopTV").style.display = "initial";
+        }
+    }
+
+
+
+    function playTV() {
+        document.getElementById("tvScreen").style.display = "none";
+        document.getElementById("tvShow").style.display = "initial";
+        document.getElementById("playTV").style.display = "none";
+        document.getElementById("stopTV").style.display = "initial";
+    }
+
+
+
+    function stopTV() {
+        document.getElementById('tvScreen').style.display = "initial";
+        document.getElementById("tvShow").style.display = "none";
+        document.getElementById("playTV").style.display = "initial";
+        document.getElementById("stopTV").style.display = "none";
     }
 
 
@@ -930,10 +1100,43 @@
 
 
 
+    let songs = ["aria-math.mp3", "lie.mp3", "zedd.mp3", "mecca.mp3", "lyricwalls.mp3"];
+    song = genRandomNumber(0, songs.length - 1);
+    document.getElementById("song").src = songs[song];
+
     function playMusic() {
         clearMenu();
-        document.getElementById("music").style.display = "initial";
+        music = document.querySelectorAll(".music");
+        music.forEach(element => {
+            element.style.display = "initial";
+        });
         document.getElementById("returnButton").style.display = "initial";
+    }
+
+    function nextSong() {
+        currentSong = song;
+        nextSongInQueue = currentSong + 1;
+        if (nextSongInQueue > songs.length - 1) {
+            document.getElementById("musicText").style.display = "initial";
+            document.getElementById("musicText").innerHTML = "Last song in queue reached.";
+            return 0;
+        }
+        song = nextSongInQueue;
+        document.getElementById("musicText").style.display = "none";
+        document.getElementById("song").src = songs[nextSongInQueue];
+    }
+
+    function prevSong() {
+        currentSong = song;
+        lastSongInQueue = currentSong - 1;
+        if (lastSongInQueue < 0) {
+            document.getElementById("musicText").style.display = "initial";
+            document.getElementById("musicText").innerHTML = "First song in queue reached.";
+            return 0;
+        }
+        song = lastSongInQueue;
+        document.getElementById("musicText").style.display = "none";
+        document.getElementById("song").src = songs[lastSongInQueue];
     }
 
 
@@ -1083,6 +1286,7 @@
     let intervalID; //Used for starting/stopping intervals. 
 
     function setTimer() {
+        document.getElementById("setTimerButton").style.display = "none"; //We do not want the user to set a timer while one is already going. 
 
         let secondsInput = document.getElementById("timerSeconds");
         let minutesInput = document.getElementById("timerMinutes");
@@ -1093,9 +1297,16 @@
         let totalSeconds = parseInt(secondsInput.value) + (parseInt(minutesInput.value) * 60) + (parseInt(hoursInput.value) * 3600);
         remainingTime = totalSeconds;
 
+        if (totalSeconds >= 99999) {
+            document.getElementById("setTimerButton").style.display = "initial";
+            return 0;
+        }
+
         document.getElementById("timerSetAlert").innerHTML = "A timer has been set for " +
         hoursInput.value + " hours, " + minutesInput.value + " minutes, and " + secondsInput.value + " seconds."
         document.getElementById("timerSetAlert").style.display = "initial";
+
+        audio = new Audio('timeralert.ogg'); //Make use of audio object to have timer sound on 0.
 
         intervalID = setInterval(() => {
             let hours = Math.floor(remainingTime / 3600);
@@ -1110,6 +1321,8 @@
 
             if (remainingTime == 0) {
                 clearInterval(intervalID);
+                audio.play();
+                document.getElementById("setTimerButton").style.display = "initial";
             } else {
                 remainingTime--;
             }
@@ -1145,6 +1358,8 @@
         let totalSeconds = parseInt(secondsInput) + (parseInt(minutesInput) * 60) + (parseInt(hoursInput) * 3600);
         remainingTime = totalSeconds;
 
+        audio = new Audio('timeralert.ogg');
+
         intervalID = setInterval(() => {
             let hours = Math.floor(remainingTime / 3600);
             let minutes = Math.floor((remainingTime % 3600) / 60);
@@ -1158,6 +1373,8 @@
 
             if (remainingTime == 0) {
                 clearInterval(intervalID);
+                audio.play();
+                document.getElementById("setTimerButton").style.display = "initial";
             } else {
                 remainingTime--;
             }
@@ -1179,7 +1396,10 @@
         const timerSetAlertInterval = setTimeout(() => {
             document.getElementById("timerSetAlert").style.display = "none";
         }, 2000);
+        document.getElementById("setTimerButton").style.display = "initial";
     }
+
+
 
     //The function called by the "Return" button, restoring all main menu options originally in the container.
     function backToMain() {
@@ -1202,8 +1422,11 @@
             element.style.display = "initial";
         });
         document.getElementById("fridge").style.display = "none";
-        document.getElementById("tv").style.display = "none";
-        document.getElementById("music").style.display = "none";
+        document.getElementById("tvScreen").style.display = "none";
+        music = document.querySelectorAll(".music");
+        music.forEach(element => {
+            element.style.display = "none";
+        });
         document.getElementById("google").style.display = "none";
         document.getElementById("returnButton").style.display = "none";
         shoppingScreen = document.querySelectorAll(".shoppingListScreen");
@@ -1218,6 +1441,10 @@
         timerScreen.forEach(element => {
             element.style.display = "none";
         })
+        tvScreen = document.querySelectorAll(".tv");
+        tvScreen.forEach(element => {
+            element.style.display = "none";
+        });
     }
 
 
