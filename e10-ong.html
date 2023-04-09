@@ -794,7 +794,7 @@
             if (h < 10) {
                 h = "0" + h;
             }
-            if (document.getElementById("timeFormatCheck").innerHTML == 0) {
+            if (document.getElementById("timeFormatCheck").innerHTML == 0) { //Check time format.
                 //Convert military time to standard time
                 var suffix = "AM";
                 if (h >= 12) {
@@ -804,7 +804,7 @@
                 if (h == 0) {
                     h = 12;
                 }
-                clock.innerHTML = h + ":" + m + ":" + s + " " + suffix;
+                clock.innerHTML = h + ":" + m + ":" + s + " " + suffix; 
             } else {
                 clock.innerHTML = h + ":" + m + ":" + s 
             }
@@ -835,7 +835,7 @@
         let cloud = "cloudy.png";
         let rain = "rainy.png";
         let storm = "stormy.png";
-        randomWeather = genRandomNumber(0, 3);
+        randomWeather = genRandomNumber(0, 3); //Generate a random number to choose what kind of weather is displayed on load.
         if (randomWeather == 0) {
             document.getElementById("weatherIcon").src = sun;
             precipChance = genRandomNumber(0, 1);
@@ -996,7 +996,7 @@
                 document.getElementById("errorMessage").style.display = "none";
             }
             if (newTempValue == -6) {
-                document.getElementById("errorMessage").innerHTML = "<strong style = 'color: red;''>Temperature below 20°C cannot be set.</strong>"
+                document.getElementById("errorMessage").innerHTML = "<strong style = 'color: red;''>Temperature below -6°C cannot be set.</strong>"
                 document.getElementById("errorMessage").style.display = "initial";
             }
         }
