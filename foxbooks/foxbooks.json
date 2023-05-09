@@ -1,0 +1,26 @@
+{
+    "Courses":[
+      {"courseid":"CMPT120", "title":"Intro to Programming", "semester": "Fall", "professor": "Donald Schwartz"},
+      {"courseid":"CMPT330", "title":"System Design", "semester": "Spring", "professor": "Andrew Tokash"},
+      {"courseid":"CMPT306", "title":"Data Communications", "semester": "Fall", "professor": "Bowu Zhang"},
+      {"courseid":"CMPT307", "title":"Internetworking", "semester": "Spring", "professor": "Robert Cannistra"},
+      {"courseid":"CMPT230", "title":"Systems Analysis", "semester": "Fall", "professor": "Marilyn Zeppetelli"},
+      {"courseid":"MATH241", "title":"Calculus I", "semester": "Spring", "professor": "Joseph Kirtland"},
+      {"courseid":"ENG221", "title":"Shakespearean Literature", "semester": "Spring", "professor": "Gregory Machacek"},
+      {"courseid":"CMPT130", "title":"Statistics", "semester": "Fall", "professor": "Carla H. Hill"},
+      {"courseid":"Hist226", "title":"American History I", "semester": "Spring", "professor": "Nicholas Marshall"},
+      {"courseid":"FYS101", "title":"First Year Seminar", "semester": "Fall", "professor": "LOH"}
+    ],
+    "Books": [
+        {"isbn": "412314E0B", "title": "Intro to Java Programming", "author": "Daniel Liang", "courseid": "CMPT120"},
+        {"isbn": "1256314HJE", "title": "Human Interaction Design", "author": "Wiley", "courseid": "CMPT330"},
+        {"isbn": "9781943153794", "title": "Business Data Communications and IT Infrastructures", "author": "Manish Agrawal", "courseid": "CMPT306"},
+        {"isbn": "978158717142", "title": "CCNA Cert Guide", "author": "Odom", "courseid": "CMPT307"},
+        {"isbn": "8013593422", "title": "CCNA Command Guide", "author": "Scott Empson", "courseid": "CMPT307"},
+        {"isbn": "9781119803782", "title": "Systems Analysis and Design", "author": "Allan Dennis", "courseid": "CMPT230"},
+        {"isbn": "9780393264029", "title": "Norton Shakespeare", "author": "Stephen Greenblatt", "courseid": "ENG221"},
+        {"isbn": "97811182288", "title": "Statistics - Unlocking the Power of Data", "author": "Robin H. Lock", "courseid": "MATH130"},
+        {"isbn": "7853124OXE", "title": "This America I", "author": "Jill Lepore", "courseid": "HIST226"},
+        {"isbn": "9780465028023", "title": "Happiness Hypothesis", "author": "Jonathan Haidt", "courseid": "FYS101"}
+    ]
+}   
