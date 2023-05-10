@@ -1,0 +1,275 @@
+@import url('https://fonts.googleapis.com/css2?family=Comme:wght@500&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+li, a, button {
+    font-family: "Comme", sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 10%;
+    background-color: rgb(218, 55, 55);
+}
+
+.logo {
+    cursor: pointer;
+}
+
+.navLinks {
+    list-style: none;
+}
+
+.navLinks li {
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+.navLinks li a {
+    transition: all 0.3s ease 0s;
+}
+
+.navLinks a::after {
+    content: "";
+    width: 0;
+    height: 2px;
+    background-color: white;
+    margin: auto;
+    display: block;
+}
+
+.navLinks li a:hover::after {
+    width: 100%;
+    transition: width 0.2s linear;
+}
+
+.navLinks li a:hover {
+    transition: all 0.3s ease 0s;
+    color: rgb(199, 199, 199)
+}
+
+.account button {
+    padding: 7px 20px;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+.account button:hover {
+    background-color: rgb(190, 190, 190);
+}
+
+.accIcon {
+    position: absolute;
+    right: 0;
+    margin-right: 100px;
+}
+
+.breadcrumbNavigation {
+    width: 25%;
+    float: left;
+}
+
+.breadcrumbNavigation .breadcrumbs {
+    padding: 10px;
+}
+
+.breadcrumbs__item {
+    display: inline-block;
+}
+
+.breadcrumbs__item:not(:last-of-type)::after {
+    content: ">";
+    margin: 0 5px;
+    color: grey;
+}
+
+.breadcrumbs__link {
+    text-decoration: none;
+    color: rgb(61, 61, 61);
+}
+
+.breadcrumbs__link:hover {
+    text-decoration: underline;
+}
+
+.breadcrumbs__link--active {
+    color: rgb(196, 103, 103)
+}
+
+.searchBar {
+    float: right;
+    margin-right: 75px;
+    margin-top: 5px;
+}
+
+.searchBar #bar {
+    border: none;
+    border-bottom: 1px solid black;
+    width: 12cm;
+    font-size: 16px;
+    padding-top: 10px;
+}
+
+.searchBar button {
+    border: none;
+    padding-top: 5px;
+    cursor: pointer;
+}
+
+.searchBar #search-button {
+    border: none;
+}
+
+.searchBar #bar:focus {
+    outline: none;
+    border-color: transparent;
+    border-bottom: 1px solid black;
+}
+
+.homepageBanner {
+    padding-top: 100px;
+    padding-bottom: 300px;
+    margin-top: 55px;
+    background-image: url('library.jpg');
+    background-position: 0px -250px;
+    background-size: cover;
+}
+
+.homepageBanner #banner-title {
+    padding: 5px 5px 5px 5px;
+    color: rgb(255, 0, 0);
+    font-size: 55px;
+    background-color: rgba(255, 255, 255, 0.897);
+    margin-left: 100px;
+}
+
+.homepageBanner #banner-text {
+    padding: 5px 5px 5px 5px;
+    color: rgb(255, 0, 0);
+    font-size: 55px;
+    background-color: rgba(255, 255, 255, 0.904);
+    margin-left: 100px;
+    margin-right: 950px;
+}
+
+.options {
+    margin-top: 50px;
+    margin-left: 100px;
+    margin-bottom: 50px;
+}
+
+.options button {
+    color: white;
+    background-color: red;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-color: red;
+}
+
+.options button:hover {
+    color: red;
+    background-color: white;
+    border-color: red;
+}
+
+.options .descContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.options .column {
+    flex-basis: 30%;
+    margin-right: 100px;
+    padding-top: 10px;
+    font-family: "Comme";
+    font-size: 18px;
+}
+
+.options div {
+    display: inline-block;
+    margin-right: 250px;
+}
+
+footer {
+    position: relative;
+    margin-top: 0px;
+    clear: both;
+    background: #111;
+    height: auto;
+    /*width: 100vw;*/
+    font-family: "Comme";
+    padding-top: 40px;
+    color: #fff;
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.footer-content h3 {
+    font-size: 1.8rem;
+    font-weight: 400;
+    text-transform: capitalize;
+    line-height: 3rem;
+}
+
+.footer-items {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0 3rem 0;
+}
+
+.footer-items li {
+    margin: 0 10px;
+}
+
+.footer-items a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.footer-items a i {
+    font-size: 1.1rem;
+    transition: color 0.4s ease;
+}
+
+.footer-items a:hover i {
+    color: rgb(160, 93, 93);
+}
+
+.footer-bottom {
+    background-color: #000;
+    /*width: 100vw;*/
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-bottom {
+    font-size: 14px;
+    word-spacing: 2px;
+    text-transform: capitalize;
+}

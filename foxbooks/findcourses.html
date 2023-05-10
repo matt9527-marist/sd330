@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Course Textbooks</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        hr {
+            margin-top: 20px;
+            margin-right: 20cm;
+            margin-left: 200px;
+            border: none;
+            height: 2px;
+            background-color: red;
+        }
+        .courseSearch {
+            padding-top: 100px;
+            padding-bottom: 200px;
+        }
+        .findCoursesBanner {
+            padding-top: 15px;
+            padding-bottom: 15px;
+            background-color: white;
+            margin-top: 25px;
+            margin-left: 200px;
+            margin-right: 35cm;
+            text-align: center;
+            border-radius: 5px;
+            border: 1px solid red;
+        }
+        .findCoursesBanner b {
+            color: red;
+            font-family: "Comme";
+            font-size: 20px;
+        }
+        .desc {
+            color: black;
+            padding-top: 20px;
+            font-family: "Comme";
+            font-size: 18px;
+            margin-left: 200px;
+        }
+        .courseSearch {
+            margin-top: -75px;
+            margin-left: 200px;
+        }
+        .courseSearch #selectCourse {
+            padding: 5px;
+            font-family: "Comme";
+            font-size: 16px;
+        }
+        .courseSearch #selectCourseByName {
+            padding: 5px;
+            font-family: "Comme";
+            font-size: 16px;
+            display: none;
+        }
+        .switchContainer {
+            margin-left: 900px;
+        }
+        .switchContainer .switch {
+            color: white;
+            background-color: red;
+            border-color: red;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        .switchContainer .switch:hover {
+            background-color: white;
+            color: red;
+            border: 1px solid;
+        }
+    </style>
+</head>
+    <body>
+        <header>
+            <a href = "foxbooks.html"><img class = "logo" src="foxbookslogo.png" width = "170px" height = "170px" alt = "logo"></a>
+
+            <nav>
+                <ul class = "navLinks">
+                    <li><a href = "foxbooks.html"><img class = "homebutton" src = "homeicon.png" width="30px" height="30px"></a></li>
+                    <li><a href = "findcourses.html">Find Course Textbooks</a></li>
+                    <li><a href = "">E-Reader</a></li>
+                    <li><a href = "">Return Textbooks</a></li>
+                    <li><a href = "">Other Student Supplies</a></li>
+                </ul>
+            </nav>
+            <a class = "account" href = ""><button>Sign In / Create Account</button></a><img class = "accIcon" src = "accounticon.png" width="50px" height="50px">
+        </header>
+
+        <div class = "breadcrumbNavigation">
+            <ul class = "breadcrumbs">
+                <li class = "breadcrumbs__item"><a href ="foxbooks.html" class = "breadcrumbs__link breadcrumbs__link">Home</a></li>
+                <li class = "breadcrumbs__item"><a href ="findcourses.html" class = "breadcrumbs__link breadcrumbs__link--active">Find Course Materials</a></li>
+            </ul>
+        </div>
+
+        <div class = "searchBar">
+            <input id = "bar" type = "text" placeholder="Enter search details (product title, ISBN, keyword, etc.)">
+            <button type = "submit"><img id = "search-button" src ="search.jfif" width="25px" height="25px" alt = "searchicon"></button>
+        </div><br>
+            
+        <br>
+
+        <br><div class="findCoursesBanner">
+            <b>FoxBooks Course Textbook Search</b>
+        </div>
+        <hr>
+        <div class="desc">
+            <p>Use the dropdown menu below to select a course and view its required <br> (or recommended) course textbooks and materials.</p>
+            <br>
+            <p><b>Login</b> or <b>Create an Account</b> to track your orders and personalize your experience.</p>
+        </div>
+        <div class = "courseSearch">
+            <select id = "selectCourse"></select>
+            <select id = "selectCourseByName"></select>
+        </div>
+        <div class="switchContainer">
+            <button class = "switch" id ="switchSearch" onclick="switchSearchCriteria()">Search by Title</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class = "switch" id ="sendBtn" onclick = "saveSelection()">Submit</button>
+        </div>
+        <hr>
+        <br><br><br>
+
+        <footer>
+            <div class="footer-content">
+                <h3>Marist FoxBooks</h3>
+                <ul class = "footer-items">
+                    <li><a href =""><i class = "fi fi-support">Contact Support</i></a></li>
+                    <li><a href =""><i class = "fi fi-about">About Us</i></a></li>
+                    <li><a href =""><i class = "fi fi-disclaimer">Disclaimer</i></a></li>
+                    <li><a href =""><i class = "fi fi-terms">Terms of Use</i></a></li>
+                    <li><a href =""><i class = "fi fi-data">Data Privacy Policy</i></a></li>
+                    <li><a href =""><i class = "fi fi-accessiblity">Accessibility</i></a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright &copy;2023 Matthew Ong</p>
+            </div>
+        </footer>
+        
+        <script>
+            var json = {
+
+            "Courses":[
+            {"courseid":"CMPT120", "title":"Intro to Programming", "semester": "Fall", "professor": "Donald Schwartz"},
+            {"courseid":"CMPT330", "title":"System Design", "semester": "Spring", "professor": "Andrew Tokash"},
+            {"courseid":"CMPT306", "title":"Data Communications", "semester": "Fall", "professor": "Bowu Zhang"},
+            {"courseid":"CMPT307", "title":"Internetworking", "semester": "Spring", "professor": "Robert Cannistra"},
+            {"courseid":"CMPT230", "title":"Systems Analysis", "semester": "Fall", "professor": "Marilyn Zeppetelli"},
+            {"courseid":"MATH241", "title":"Calculus I", "semester": "Spring", "professor": "Joseph Kirtland"},
+            {"courseid":"ENG221", "title":"Shakespearean Literature", "semester": "Spring", "professor": "Gregory Machacek"},
+            {"courseid":"CMPT130", "title":"Statistics", "semester": "Fall", "professor": "Carla H. Hill"},
+            {"courseid":"Hist226", "title":"American History I", "semester": "Spring", "professor": "Nicholas Marshall"},
+            {"courseid":"FYS101", "title":"First Year Seminar", "semester": "Fall", "professor": "LOH"}
+            ],
+            "Books": [
+                {"isbn": "412314E0B", "title": "Intro to Java Programming", "author": "Daniel Liang", "courseid": "CMPT120"},
+                {"isbn": "1256314HJE", "title": "Human Interaction Design", "author": "Wiley", "courseid": "CMPT330"},
+                {"isbn": "9781943153794", "title": "Business Data Communications and IT Infrastructures", "author": "Manish Agrawal", "courseid": "CMPT306"},
+                {"isbn": "978158717142", "title": "CCNA Cert Guide", "author": "Odom", "courseid": "CMPT307"},
+                {"isbn": "8013593422", "title": "CCNA Command Guide", "author": "Scott Empson", "courseid": "CMPT307"},
+                {"isbn": "9781119803782", "title": "Systems Analysis and Design", "author": "Allan Dennis", "courseid": "CMPT230"},
+                {"isbn": "9780393264029", "title": "Norton Shakespeare", "author": "Stephen Greenblatt", "courseid": "ENG221"},
+                {"isbn": "97811182288", "title": "Statistics - Unlocking the Power of Data", "author": "Robin H. Lock", "courseid": "MATH130"},
+                {"isbn": "7853124OXE", "title": "This America I", "author": "Jill Lepore", "courseid": "HIST226"},
+                {"isbn": "9780465028023", "title": "Happiness Hypothesis", "author": "Jonathan Haidt", "courseid": "FYS101"}
+            ]
+            }   
+
+            courseSelect = document.getElementById("selectCourse");
+            courseSelectByName = document.getElementById("selectCourseByName");
+
+            for (i = 0; i<parseInt(JSON.stringify(json['Courses'].length)); i++) {
+                const option = document.createElement('option');
+                option.text =  JSON.stringify(json['Courses'][i].courseid);
+                option.value =  JSON.stringify(json['Courses'][i].courseid);
+                courseSelect.appendChild(option);
+            }
+
+            for (i = 0; i<parseInt(JSON.stringify(json['Courses'].length)); i++) {
+                const option = document.createElement('option');
+                option.text =  JSON.stringify(json['Courses'][i].title);
+                option.value =  JSON.stringify(json['Courses'][i].title);
+                courseSelectByName.appendChild(option);
+            }
+
+            function switchSearchCriteria() {
+                if (document.getElementById("switchSearch").innerHTML == "Search by Title") {
+                    document.getElementById("switchSearch").innerHTML = "Search by ID";
+                    document.getElementById("selectCourse").style.display = "none";
+                    document.getElementById("selectCourseByName").style.display = "initial";
+                } else {
+                    document.getElementById("switchSearch").innerHTML = "Search by Title";
+                    document.getElementById("selectCourse").style.display = "initial";
+                    document.getElementById("selectCourseByName").style.display = "none";
+                }   
+            }
+
+            function saveSelection() {
+                currentSelector = document.getElementById("switchSearch").innerHTML;
+                if (currentSelector == "Search by Title") {
+                    var selectElement = document.getElementById("selectCourse");
+                    var selectedOption = selectElement.options[selectElement.selectedIndex].value;
+
+                    var url = "textbooklist.html?selectedOption=" + encodeURIComponent(selectedOption) + "&selectionType=" + encodeURIComponent("ID");
+                    window.location.href = url;
+                } else {
+                    var selectElement = document.getElementById("selectCourseByName");
+                    var selectedOption = selectElement.options[selectElement.selectedIndex].value;
+
+                    var url = "textbooklist.html?selectedOption=" + encodeURIComponent(selectedOption) + "&selectionType=" + encodeURIComponent("TITLE");
+                    window.location.href = url;
+                }
+                
+            }
+
+        </script>
+
+    </body>
+</html>
+

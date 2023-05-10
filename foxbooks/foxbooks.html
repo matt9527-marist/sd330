@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marist FoxBooks | Textbooks, Course Materials, Supplies</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+    <body>
+        <header>
+            <a href = "foxbooks.html"><img class = "logo" src="foxbookslogo.png" width = "170px" height = "170px" alt = "logo"></a>
+
+            <nav>
+                <ul class = "navLinks">
+                    <li><a href = "foxbooks.html"><img class = "homebutton" src = "homeicon.png" width="30px" height="30px"></a></li>
+                    <li><a href = "findcourses.html">Find Course Textbooks</a></li>
+                    <li><a href = "">E-Reader</a></li>
+                    <li><a href = "">Return Textbooks</a></li>
+                    <li><a href = "">Other Student Supplies</a></li>
+                </ul>
+            </nav>
+            <a class = "account" href = ""><button>Sign In / Create Account</button></a><img class = "accIcon" src = "accounticon.png" width="50px" height="50px">
+        </header>
+        <div class = "breadcrumbNavigation">
+            <ul class = "breadcrumbs">
+                <li class = "breadcrumbs__item"><a href ="foxbooks.html" class = "breadcrumbs__link breadcrumbs__link--active">Home</a></li>
+            </ul>
+        </div>
+        
+        <div class = "searchBar">
+            <input id = "bar" type = "text" placeholder="Enter search details (product title, ISBN, keyword, etc.)">
+            <button type = "submit"><img id = "search-button" src ="search.jfif" width="25px" height="25px" alt = "searchicon"></button>
+        </div>
+
+        <div class = "homepageBanner">
+            <b id = "banner-title">Marist College Bookstore</b><br><br>
+            <section id = "banner-text">Shop Course Materials and Textbooks</section><br><br>
+        </div>
+
+        <div class="options">
+            <div class="shop1"><a href = "findcourses.html"><button>Search Textbooks by Course ID 📚</button></a></div>
+            <div class="shop2"><a href = ""><button>Shop School Supplies 📓</button></a></div>
+            <div class="shop3"><a href = ""><button>Shop Other/Electronic Supplies 💻</button></a></div>
+            <br>
+            <div class="descContainer">
+                <div class="column"><p>Select Course ID or name and generate a list of the required textbooks for the selected course.</p></div>
+                <div class="column" style = "margin-left: -5px;"><p>Shop for school supplies including <br> notebooks, folders, binders, and other materials.</p></div>
+                <div class="column" style = "margin-left: -180px; padding-left: 100px;"><p>Shop for computers, tablets, chargers, <br> and other electronic supplies.</p></div>    
+            </div>        
+         </div>     
+
+        <footer>
+            <div class="footer-content">
+                <h3>Marist FoxBooks</h3>
+                <ul class = "footer-items">
+                    <li><a href =""><i class = "fi fi-support">Contact Support</i></a></li>
+                    <li><a href =""><i class = "fi fi-about">About Us</i></a></li>
+                    <li><a href =""><i class = "fi fi-disclaimer">Disclaimer</i></a></li>
+                    <li><a href =""><i class = "fi fi-terms">Terms of Use</i></a></li>
+                    <li><a href =""><i class = "fi fi-data">Data Privacy Policy</i></a></li>
+                    <li><a href =""><i class = "fi fi-accessiblity">Accessibility</i></a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright &copy;2023 Matthew Ong</p>
+            </div>
+        </footer>
+
+
+    </body>
+
+    <script>
+        //No need to show a breadcrumb trail on the homepage.
+        breadcrumbs = document.querySelectorAll(".breadcrumbs");
+        breadcrumbs.forEach(element => {
+            element.style.display = 'none';
+        });
+    </script>
+</html>
