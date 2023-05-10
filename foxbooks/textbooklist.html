@@ -188,18 +188,18 @@
         {"courseid":"FYS101", "title":"First Year Seminar", "semester": "Fall", "professor": "LOH"}
         ],
         "Books": [
-            {"isbn": "412314E0B", "title": "Intro to Java Programming", "author": "Daniel Liang", "courseid": "CMPT120"},
-            {"isbn": "112141587", "title": "Principles of Program Structure", "author": "John Marlboro", "courseid": "CMPT120"},
-            {"isbn": "1256314HJE", "title": "Human Interaction Design", "author": "Wiley", "courseid": "CMPT330"},
-            {"isbn": "9781943153794", "title": "Business Data Communications and IT Infrastructures", "author": "Manish Agrawal", "courseid": "CMPT306"},
-            {"isbn": "978158717142", "title": "CCNA Cert Guide", "author": "Odom", "courseid": "CMPT307"},
-            {"isbn": "8013593422", "title": "CCNA Command Guide", "author": "Scott Empson", "courseid": "CMPT307"},
-            {"isbn": "9781119803782", "title": "Systems Analysis and Design", "author": "Allan Dennis", "courseid": "CMPT230"},
-            {"isbn": "9780393264029", "title": "Norton Shakespeare", "author": "Stephen Greenblatt", "courseid": "ENG221"},
-            {"isbn": "673265267DB0", "title": "Guide to Shakespearean Language", "author": "Leo Clairmont", "courseid": "ENG221"},
-            {"isbn": "97811182288", "title": "Statistics - Unlocking the Power of Data", "author": "Robin H. Lock", "courseid": "MATH130"},
-            {"isbn": "7853124OXE", "title": "This America I", "author": "Jill Lepore", "courseid": "HIST226"},
-            {"isbn": "9780465028023", "title": "Happiness Hypothesis", "author": "Jonathan Haidt", "courseid": "FYS101"}
+            {"isbn": "412314E0B", "title": "Intro to Java Programming", "author": "Daniel Liang", "courseid": "CMPT120", "price": "$84.99"},
+            {"isbn": "112141587", "title": "Principles of Program Structure", "author": "John Marlboro", "courseid": "CMPT120", "price": "$25.99"},
+            {"isbn": "1256314HJE", "title": "Human Interaction Design", "author": "Wiley", "courseid": "CMPT330", "price": "$34.99"},
+            {"isbn": "9781943153794", "title": "Business Data Communications and IT Infrastructures", "author": "Manish Agrawal", "courseid": "CMPT306", "price": "$124.57"},
+            {"isbn": "978158717142", "title": "CCNA Cert Guide", "author": "Odom", "courseid": "CMPT307", "price": "$95.22"},
+            {"isbn": "8013593422", "title": "CCNA Command Guide", "author": "Scott Empson", "courseid": "CMPT307", "price": "$14.99"},
+            {"isbn": "9781119803782", "title": "Systems Analysis and Design", "author": "Allan Dennis", "courseid": "CMPT230", "price": "$240.00"},
+            {"isbn": "9780393264029", "title": "Norton Shakespeare", "author": "Stephen Greenblatt", "courseid": "ENG221", "price": "$147.54"},
+            {"isbn": "673265267DB0", "title": "Guide to Shakespearean Language", "author": "Leo Clairmont", "courseid": "ENG221", "price": "$74.43"},
+            {"isbn": "97811182288", "title": "Statistics - Unlocking the Power of Data", "author": "Robin H. Lock", "courseid": "MATH130", "price": "$119.37"},
+            {"isbn": "7853124OXE", "title": "This America I", "author": "Jill Lepore", "courseid": "HIST226", "price": "$32.76"},
+            {"isbn": "9780465028023", "title": "Happiness Hypothesis", "author": "Jonathan Haidt", "courseid": "FYS101", "price": "$51.99"}
         ]
         }   
         var course;
@@ -236,7 +236,8 @@
             if (JSON.stringify(json['Books'][i].courseid) == course) {
                 document.getElementById("textbook-item").innerHTML += "<b>" + JSON.stringify(json['Books'][i].title) + "</b> <br>" + 
                 "<p>ISBN: <i>" +  JSON.stringify(json['Books'][i].isbn).replace(/^['"](.+)['"]$/, '$1') +
-                "</i><br><p>Author: <b>" + JSON.stringify(json['Books'][i].author).replace(/^['"](.+)['"]$/, '$1') + "</b><br><br>" +
+                "</i><br><p>Author: <b>" + JSON.stringify(json['Books'][i].author).replace(/^['"](.+)['"]$/, '$1') + "</b>" +
+                "<br><br><p>Price: <b style = 'font-size: 16px; color: darkgreen;'>" + JSON.stringify(json['Books'][i].price).replace(/^['"](.+)['"]$/, '$1') + "</b></p><br>" +
                     "<button id = 'addToCartBtn' onclick = 'addToCart()'>Add to Cart</button><br><br>";
             }
         }
